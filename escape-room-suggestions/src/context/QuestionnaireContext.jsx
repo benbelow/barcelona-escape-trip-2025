@@ -35,6 +35,7 @@ export const questions = [
     question: "What types of horror are you happy with?",
     type: "multiple",
     optional: true,
+    skippable: true,
     skipIf: (answers) => answers[QuestionId.HORROR_APPETITE] === HorrorPreference.NONE,
     options: Object.entries(HorrorTypes).map(([_, value]) => ({
       id: value,
@@ -47,10 +48,12 @@ export const questions = [
     id: QuestionId.ROOM_PROPERTIES,
     question: "Select the properties you value most in an escape room",
     type: "multiple",
+    skippable: true,
     options: Object.entries(RoomProperties).map(([_, value]) => ({
       id: value,
       label: RoomPropertyLabels[value]
-    }))
+    })),
+    defaultValue: []
   }
 ];
 

@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { RoomPropertyLabels } from '../../constants/roomProperties';
+import { HorrorLevels } from '../../constants/horrorTypes';
+import terpecaTopLogo from '../../assets/2024TERPECATopRoom.png';
+import terpecaFinalistLogo from '../../assets/2024TERPECABadgeFinalist.png';
 import './RoomGrid.css';
 
 export default function RoomGrid({ rooms }) {
@@ -33,6 +36,14 @@ export default function RoomGrid({ rooms }) {
                 Horror Level {room.horrorLevel}
               </div>
             )}
+            {room.terpeca2024 && (
+              <div className="terpeca-badge">
+                <img 
+                  src={room.terpeca2024 <= 100 ? terpecaTopLogo : terpecaFinalistLogo} 
+                  alt={room.terpeca2024 <= 100 ? "TERPECA 2024 Top Room" : "TERPECA 2024 Finalist"}
+                />
+              </div>
+            )}
           </div>
           <div className="room-content">
             <h3>{room.name}</h3>
@@ -40,6 +51,9 @@ export default function RoomGrid({ rooms }) {
               {room.theme && (
                 <div className="theme-container">
                   <span className="theme-pill">{room.theme}</span>
+                  {room.horrorLevel !== HorrorLevels.NOT_HORROR && (
+                    <span className="theme-pill horror">Horror</span>
+                  )}
                 </div>
               )}
               {room.description && <p className="room-description">{room.description}</p>}

@@ -49,79 +49,6 @@ function MultipleChoiceQuestion({ question, selectedAnswers = [], onAnswer }) {
   );
 }
 
-function HorrorCompositeQuestion({ question, answers, onAnswer, onHorrorPreferences }) {
-  const horrorPreferences = answers[QuestionId.HORROR_PREFERENCES] || {};
-  const isEnabled = horrorPreferences.enabled || false;
-  const selectedAnswer = answers[question.id];
-
-  const handleToggleEnable = () => {
-    if (!isEnabled) {
-      // When enabling, initialize all preferences to false
-      const initialPreferences = {
-        enabled: true
-      };
-      question.subPreferences.forEach(pref => {
-        initialPreferences[pref.id] = false;
-      });
-      onHorrorPreferences(initialPreferences);
-    } else {
-      // When disabling, remove all preferences
-      onAnswer(QuestionId.HORROR_PREFERENCES, undefined);
-    }
-  };
-
-  const handlePreferenceChange = (prefId) => {
-    onHorrorPreferences({
-      ...horrorPreferences,
-      [prefId]: !horrorPreferences[prefId]
-    });
-  };
-
-  return (
-    <div className="horror-composite">
-      <div className="options">
-        {question.options.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => onAnswer(option.id)}
-            className={`option-button ${selectedAnswer === option.id ? 'selected' : ''}`}
-          >
-            {option.label}
-          </button>
-        ))}
-      </div>
-
-      {selectedAnswer !== HorrorPreference.NONE && (
-        <div className="horror-preferences">
-          <label className="enable-preferences">
-            <input
-              type="checkbox"
-              checked={isEnabled}
-              onChange={handleToggleEnable}
-            />
-            {question.enableQuestion}
-          </label>
-
-          {isEnabled && (
-            <div className="preferences-grid">
-              {question.subPreferences.map(pref => (
-                <label key={pref.id} className="preference-option">
-                  <input
-                    type="checkbox"
-                    checked={horrorPreferences[pref.id] || false}
-                    onChange={() => handlePreferenceChange(pref.id)}
-                  />
-                  {pref.label}
-                </label>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function Questionnaire() {
   const navigate = useNavigate();
   const { questionId } = useParams();
@@ -131,7 +58,7 @@ export default function Questionnaire() {
   const currentQuestion = questions[currentQuestionIndex];
 
   // Skip questions based on conditions
-  if (currentQuestion.skipIf?.(answers)) {
+  if (currentQuestion?.skipIf?.(answers)) {
     if (currentQuestionIndex < questions.length - 1) {
       navigate(`/question/${currentQuestionIndex + 2}`);
     } else {
@@ -150,8 +77,15 @@ export default function Questionnaire() {
     }
   };
 
-  const handleHorrorPreferences = (preferences) => {
-    updateAnswer(QuestionId.HORROR_PREFERENCES, preferences);
+  const handleSkip = () => {
+    if (currentQuestion.defaultValue) {
+      updateAnswer(currentQuestion.id, currentQuestion.defaultValue);
+    }
+    if (currentQuestionIndex < questions.length - 1) {
+      navigate(`/question/${currentQuestionIndex + 2}`);
+    } else {
+      navigate('/results');
+    }
   };
 
   const handleNext = () => {
@@ -163,7 +97,7 @@ export default function Questionnaire() {
   };
 
   const canProceed = () => {
-    if (currentQuestion.optional) return true;
+    if (currentQuestion.optional || currentQuestion.skippable) return true;
     
     if (currentQuestion.type === 'single') {
       return !!answers[currentQuestion.id];
@@ -172,25 +106,28 @@ export default function Questionnaire() {
       const selected = answers[currentQuestion.id] || [];
       return selected.length > 0;
     }
-    if (currentQuestion.type === 'horror-composite') {
-      const hasAnswer = !!answers[currentQuestion.id];
-      const prefs = answers[QuestionId.HORROR_PREFERENCES] || {};
-      
-      return hasAnswer && (
-        answers[currentQuestion.id] === HorrorPreference.NONE ||
-        !prefs.enabled ||
-        currentQuestion.subPreferences.some(pref => prefs[pref.id])
-      );
-    }
     return false;
   };
 
+  if (!currentQuestion) {
+    navigate('/results');
+    return null;
+  }
+
   return (
     <div className="questionnaire">
-      <div className="progress">
-        Question {currentQuestionIndex + 1} of {questions.length}
-        {currentQuestion.optional && <span className="optional-label"> (Optional)</span>}
+      <div className="question-header">
+        <div className="progress">
+          Question {currentQuestionIndex + 1} of {questions.length}
+          {currentQuestion.optional && <span className="optional-label">(Optional)</span>}
+        </div>
+        {currentQuestion.skippable && (
+          <button onClick={handleSkip} className="skip-button">
+            Skip this question
+          </button>
+        )}
       </div>
+      
       <h2>{currentQuestion.question}</h2>
       
       {currentQuestion.type === 'single' && (
@@ -200,50 +137,25 @@ export default function Questionnaire() {
           onAnswer={handleAnswer}
         />
       )}
-
+      
       {currentQuestion.type === 'multiple' && (
-        <MultipleChoiceQuestion
-          question={currentQuestion}
-          selectedAnswers={answers[currentQuestion.id] || []}
-          onAnswer={handleAnswer}
-        />
+        <>
+          <MultipleChoiceQuestion
+            question={currentQuestion}
+            selectedAnswers={answers[currentQuestion.id]}
+            onAnswer={handleAnswer}
+          />
+          <div className="navigation">
+            <button 
+              onClick={handleNext}
+              className="next-button"
+              disabled={!canProceed()}
+            >
+              {currentQuestionIndex === questions.length - 1 ? 'Show Results' : 'Next Question'}
+            </button>
+          </div>
+        </>
       )}
-
-      {currentQuestion.type === 'horror-composite' && (
-        <HorrorCompositeQuestion
-          question={currentQuestion}
-          answers={answers}
-          onAnswer={updateAnswer}
-          onHorrorPreferences={handleHorrorPreferences}
-        />
-      )}
-
-      <div className="navigation">
-        {currentQuestionIndex > 0 && (
-          <button 
-            className="nav-button"
-            onClick={() => navigate(`/question/${currentQuestionIndex}`)}
-          >
-            Previous Question
-          </button>
-        )}
-        {canProceed() && currentQuestionIndex < questions.length - 1 && (
-          <button 
-            className="nav-button"
-            onClick={handleNext}
-          >
-            Next Question
-          </button>
-        )}
-        {canProceed() && currentQuestionIndex === questions.length - 1 && (
-          <button 
-            className="nav-button"
-            onClick={() => navigate('/results')}
-          >
-            View Results
-          </button>
-        )}
-      </div>
     </div>
   );
 }

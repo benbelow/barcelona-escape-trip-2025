@@ -83,6 +83,10 @@ const preferenceSortOperator = (answers) => {
       return horrorRank[roomB.horrorLevel] - horrorRank[roomA.horrorLevel];
     }
 
+    if (answers[QuestionId.HORROR_APPETITE] === HorrorPreference.WILL_PLAY && roomA.horrorLevel !== roomB.horrorLevel) {
+      return horrorRank[roomA.horrorLevel] - horrorRank[roomB.horrorLevel];
+    }
+
     // Then sort by TERPECA 2024 rank 
     if (roomA.terpeca2024 !== roomB.terpeca2024) {
       return (roomA.terpeca2024 || 9999) - (roomB.terpeca2024 || 9999);

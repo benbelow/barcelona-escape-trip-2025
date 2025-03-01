@@ -123,7 +123,7 @@ export const rooms = [
     horrorLevel: HorrorLevels.SCARY,
     horrorTypes: [HorrorTypes.DARK_THEMES, HorrorTypes.JUMP_SCARES],
     room_properties: [RoomProperties.NOVEL, RoomProperties.SPECTACLE, RoomProperties.IMMERSIVE],
-    expectedTier: RoomTier.VERY_GOOD,
+    expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_LaCasa.png",
     location: "Berga",
     terpeca2024: 62
