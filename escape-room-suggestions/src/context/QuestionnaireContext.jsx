@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { HorrorTypes, HorrorTypeLabels, HorrorPreference } from '../constants/horrorTypes';
 import { RoomQuantityPreference, RoomQuantityLabels } from '../constants/roomPreferences';
+import { RoomProperties, RoomPropertyLabels } from '../constants/roomProperties';
 import { QuestionId } from '../constants/questionIds';
 
 const QuestionnaireContext = createContext(null);
@@ -40,6 +41,16 @@ export const questions = [
       label: HorrorTypeLabels[value]
     })),
     defaultValue: Object.values(HorrorTypes)
+  },
+  {
+    index: 4,
+    id: QuestionId.ROOM_PROPERTIES,
+    question: "Select the properties you value most in an escape room",
+    type: "multiple",
+    options: Object.entries(RoomProperties).map(([_, value]) => ({
+      id: value,
+      label: RoomPropertyLabels[value]
+    }))
   }
 ];
 

@@ -3,11 +3,15 @@ import { QuestionId } from '../../constants/questionIds';
 import { HorrorPreference } from '../../constants/horrorTypes';
 import { HorrorLevels } from '../../constants/horrorTypes';
 import { HorrorTypes } from '../../constants/horrorTypes';
-import {RoomQuantityPreference } from '../../constants/roomPreferences';
+import { RoomTier } from '../../constants/roomPreferences';
+
+import { RoomQuantityPreference } from '../../constants/roomPreferences';
 
 export const applyPreferences = (answers) => {
   const filteredRooms = rooms.filter(applyPreferenceFilters(answers));
+  console.log('Filtered rooms: ', filteredRooms);
   filteredRooms.sort(preferenceSortOperator(answers));
+  console.log('Sorted rooms: ', filteredRooms);
   return filteredRooms.slice(0, getNumberOfRooms(answers));
 }
 
@@ -27,12 +31,12 @@ const filterByHorrorPreference = (answers, room) => {
   const allHorrorTypes = Object.values(HorrorTypes);
 
   // Basic horror level filtering
-  if (horrorAppetite === HorrorPreference.NONE 
+  if (horrorAppetite === HorrorPreference.NONE
     && [HorrorLevels.SCARY, HorrorLevels.VERY_SCARY].includes(room.horrorLevel)) return false;
 
   // Get horror types that user did not select
   const unselectedHorrorTypes = allHorrorTypes.filter(type => !horrorPreferences.includes(type));
-  
+
   // If room contains any unselected horror type, filter it out
   for (const horrorType of unselectedHorrorTypes) {
     if (room.horrorTypes?.includes(horrorType)) return false;
@@ -43,18 +47,45 @@ const filterByHorrorPreference = (answers, room) => {
 
 // Sort rooms by preference
 const preferenceSortOperator = (answers) => {
+  const roomProperties = answers[QuestionId.ROOM_PROPERTIES] || [];
+
+  // return -ve if a is better, return +ve if b is better
   return (roomA, roomB) => {
-    // Sort by tier first
-    if (roomA.expectedTier !== roomB.expectedTier) {
-      return roomA.expectedTier - roomB.expectedTier;
+    // Sort by matching room properties first
+    const aHasMatchingProperty = roomProperties.some(property => roomA.room_properties?.includes(property));
+    const bHasMatchingProperty = roomProperties.some(property => roomB.room_properties?.includes(property));
+
+    if (aHasMatchingProperty !== bHasMatchingProperty) {
+      return aHasMatchingProperty ? -1 : 1;
     }
 
-    // Then by horror level based on preference
-    const horrorAppetite = answers[QuestionId.HORROR_APPETITE];
-    if (horrorAppetite === HorrorPreference.SEEKING) {
-      return roomB.horrorLevel - roomA.horrorLevel;
-    } else {
-      return roomA.horrorLevel - roomB.horrorLevel;
+    // Then sort by tier
+    const tierOrder = {
+      [RoomTier.TOP_TIER]: 5,
+      [RoomTier.BRILLIANT]: 4,
+      [RoomTier.VERY_GOOD]: 3,
+      [RoomTier.GOOD]: 2,
+      [RoomTier.AVERAGE]: 1
+    };
+
+    if (roomA.expectedTier !== roomB.expectedTier) {
+      return tierOrder[roomB.expectedTier] - tierOrder[roomA.expectedTier];
+    }
+
+    // Then sort by horror level 
+    const horrorRank = {
+      [HorrorLevels.VERY_SCARY]: 3,
+      [HorrorLevels.SCARY]: 2,
+      [HorrorLevels.NOT_HORROR]: 1
+    };
+
+    if (answers[QuestionId.HORROR_APPETITE] === HorrorPreference.SEEKING && roomA.horrorLevel !== roomB.horrorLevel) {
+      return horrorRank[roomB.horrorLevel] - horrorRank[roomA.horrorLevel];
+    }
+
+    // Then sort by TERPECA 2024 rank 
+    if (roomA.terpeca2024 !== roomB.terpeca2024) {
+      return (roomA.terpeca2024 || 9999) - (roomB.terpeca2024 || 9999);
     }
   }
 }
