@@ -8,7 +8,7 @@ import { QuestionnaireProvider } from './context/QuestionnaireContext'
 function App() {
   return (
     <QuestionnaireProvider>
-      <Router>
+      <Router basename="/barcelona-escape-trip-2025">
         <div className="app">
           <header>
             <h1>Escape Room Finder</h1>
