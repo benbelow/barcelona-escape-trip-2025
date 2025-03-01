@@ -13,16 +13,14 @@ export const RoomQuantityLabels = {
 };
 
 export const RoomTier = {
-  ESSENTIAL: 1,
-  RECOMMENDED: 2,
-  OPTIONAL: 3,
-  EXTRA: 4
-};
-
-// Maps quantity preferences to room tiers
-export const PreferenceToTierMap = {
-  [RoomQuantityPreference.BEST_ONLY]: RoomTier.ESSENTIAL,
-  [RoomQuantityPreference.FOCUSED]: RoomTier.RECOMMENDED,
-  [RoomQuantityPreference.PACKED]: RoomTier.OPTIONAL,
-  [RoomQuantityPreference.MAXIMUM]: RoomTier.EXTRA
+  // Top few rooms in Barcelona
+  TOP_TIER: 'topTier',
+  // Probably TERPECA winners
+  BRILLIANT: 'brilliant',
+  // Probably TERPECA finalists
+  VERY_GOOD: 'veryGood',
+  // Solid games
+  GOOD: 'good',
+  // Average games
+  AVERAGE: 'average'
 };

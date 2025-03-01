@@ -1,7 +1,9 @@
 import { rooms } from '../../data/rooms';
 import { QuestionId } from '../../constants/questionIds';
 import { HorrorPreference } from '../../constants/horrorTypes';
-import { PreferenceToTierMap, RoomQuantityPreference } from '../../constants/roomPreferences';
+import { HorrorLevels } from '../../constants/horrorTypes';
+import { HorrorTypes } from '../../constants/horrorTypes';
+import {RoomQuantityPreference } from '../../constants/roomPreferences';
 
 export const applyPreferences = (answers) => {
   const filteredRooms = rooms.filter(applyPreferenceFilters(answers));
@@ -22,16 +24,18 @@ const applyPreferenceFilters = (answers) => {
 const filterByHorrorPreference = (answers, room) => {
   const horrorAppetite = answers[QuestionId.HORROR_APPETITE];
   const horrorPreferences = answers[QuestionId.HORROR_PREFERENCES] || [];
+  const allHorrorTypes = Object.values(HorrorTypes);
 
   // Basic horror level filtering
-  if (horrorAppetite === HorrorPreference.NONE && room.horrorLevel > 0) return false;
-  if (horrorAppetite === HorrorPreference.WILL_PLAY && room.horrorLevel > 2) return false;
-  if (horrorAppetite === HorrorPreference.NEUTRAL && room.horrorLevel > 3) return false;
-  // No restriction for SEEKING
+  if (horrorAppetite === HorrorPreference.NONE 
+    && [HorrorLevels.SCARY, HorrorLevels.VERY_SCARY].includes(room.horrorLevel)) return false;
 
-  // Specific horror preferences filtering
-  if (horrorPreferences.length > 0 && !room.horrorTypes?.some(type => horrorPreferences.includes(type))) {
-    return false;
+  // Get horror types that user did not select
+  const unselectedHorrorTypes = allHorrorTypes.filter(type => !horrorPreferences.includes(type));
+  
+  // If room contains any unselected horror type, filter it out
+  for (const horrorType of unselectedHorrorTypes) {
+    if (room.horrorTypes?.includes(horrorType)) return false;
   }
 
   return true;

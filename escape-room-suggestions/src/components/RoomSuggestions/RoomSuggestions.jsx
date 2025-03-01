@@ -2,9 +2,6 @@ import { Link } from 'react-router-dom';
 import { rooms } from '../../data/rooms';
 import RoomGrid from '../RoomGrid/RoomGrid';
 import { useQuestionnaire } from '../../context/QuestionnaireContext';
-import { HorrorPreference } from '../../constants/horrorTypes';
-import { PreferenceToTierMap } from '../../constants/roomPreferences';
-import { QuestionId } from '../../constants/questionIds';
 import { applyPreferences } from '../../components/RoomSuggestions/suggest-rooms';
 import './RoomSuggestions.css';
 

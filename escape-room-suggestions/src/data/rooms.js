@@ -1,4 +1,5 @@
-import { HorrorLevels } from "../constants/horrorTypes";
+import { HorrorLevels, HorrorPreference, HorrorTypes } from "../constants/horrorTypes";
+import { RoomTier } from "../constants/roomPreferences";
 
 export const rooms = [
   {
@@ -7,7 +8,8 @@ export const rooms = [
     theme: "",
     description: "",
     horrorLevel: HorrorLevels.NOT_HORROR,
-    expectedTier: 1,
+    horrorTypes: [],
+    expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://terpeca.com/images/rooms/Room_KONGProtocol.jpg"
   },
   {
@@ -16,7 +18,8 @@ export const rooms = [
     theme: "",
     description: "",
     horrorLevel: HorrorLevels.NOT_HORROR,
-    expectedTier: 1,
+    horrorTypes: [],
+    expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://terpeca.com/images/rooms/Room_LaTaberna.jpg"
   },
   {
@@ -25,7 +28,8 @@ export const rooms = [
     theme: "",
     description: "",
     horrorLevel: HorrorLevels.NOT_HORROR,
-    expectedTier: 1,
+    horrorTypes: [],
+    expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://images.unsplash.com/photo-1614644147798-f8c0fc9da7f6?w=800&auto=format&fit=crop"
   },
   {
@@ -34,7 +38,8 @@ export const rooms = [
     theme: "",
     description: "",
     horrorLevel: HorrorLevels.NOT_HORROR,
-    expectedTier: 1,
+    horrorTypes: [],
+    expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://images.unsplash.com/photo-1515630278258-407f66498911?w=800&auto=format&fit=crop"
   },
   {
@@ -43,7 +48,8 @@ export const rooms = [
     theme: "",
     description: "",
     horrorLevel: HorrorLevels.VERY_SCARY,
-    expectedTier: 1,
+    horrorTypes: [HorrorTypes.BEING_CHASED, HorrorTypes.JUMP_SCARES, HorrorTypes.DARK_THEMES],
+    expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://images.unsplash.com/photo-1596633607590-7156877ef734?w=800&auto=format&fit=crop"
   },
   {
@@ -52,7 +58,8 @@ export const rooms = [
     theme: "",
     description: "",
     horrorLevel: HorrorLevels.VERY_SCARY,
-    expectedTier: 1,
+    horrorTypes: [HorrorTypes.BEING_CHASED, HorrorTypes.JUMP_SCARES, HorrorTypes.DARK_THEMES],
+    expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://images.unsplash.com/photo-1626557981101-aae6f84aa6ff?w=800&auto=format&fit=crop"
   },
   {
@@ -60,8 +67,9 @@ export const rooms = [
     name: "Jurasico",
     theme: "",
     description: "",
-    horrorLevel: HorrorLevels.VERY_SCARY,
-    expectedTier: 2,
+    horrorLevel: HorrorLevels.NOT_HORROR,
+    horrorTypes: [],
+    expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://images.unsplash.com/photo-1619454016518-697bc231e7cb?w=800&auto=format&fit=crop"
   }
 ];
