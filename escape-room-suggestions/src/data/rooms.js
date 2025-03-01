@@ -234,7 +234,7 @@ export const rooms = [
     description: "These guys are absolutely amazing in terms of creating original and never seen games. They also make you laugh in their rooms, even if those are scary ones. Don't let them stop creating!",
     horrorLevel: HorrorLevels.SCARY,
     horrorTypes: [HorrorTypes.DARK_THEMES, HorrorTypes.JUMP_SCARES],
-    room_properties: [],
+    room_properties: [RoomProperties.COMEDY],
     expectedTier: RoomTier.GOOD,
     imageUrl: "https://example.com/inmortum2.jpg",
     location: "Gironella",

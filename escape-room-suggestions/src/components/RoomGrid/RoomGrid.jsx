@@ -5,8 +5,9 @@ import terpecaTopLogo from '../../assets/2024TERPECATopRoom.png';
 import terpecaFinalistLogo from '../../assets/2024TERPECABadgeFinalist.png';
 import './RoomGrid.css';
 
-export default function RoomGrid({ rooms }) {
+export default function RoomGrid({ rooms, onRemoveRoom }) {
   const [imageErrors, setImageErrors] = useState({});
+  const [animatingRooms, setAnimatingRooms] = useState(new Set());
 
   const handleImageError = (roomId) => {
     setImageErrors(prev => ({
@@ -15,10 +16,34 @@ export default function RoomGrid({ rooms }) {
     }));
   };
 
+  const handleRemove = (roomId, event) => {
+    event.stopPropagation();
+    setAnimatingRooms(prev => new Set([...prev, roomId]));
+    
+    setTimeout(() => {
+      onRemoveRoom(roomId);
+      setAnimatingRooms(prev => {
+        const next = new Set(prev);
+        next.delete(roomId);
+        return next;
+      });
+    }, 300);
+  };
+
   return (
     <div className="rooms-grid">
       {rooms.map(room => (
-        <div key={room.id} className="room-card">
+        <div 
+          key={room.id} 
+          className={`room-card ${animatingRooms.has(room.id) ? 'removing' : ''}`}
+        >
+          <button 
+            className="remove-room" 
+            onClick={(e) => handleRemove(room.id, e)}
+            aria-label="Remove room from results"
+          >
+            ×
+          </button>
           <div className="room-image">
             {!imageErrors[room.id] ? (
               <img 

@@ -4,11 +4,11 @@ import { HorrorPreference } from '../../constants/horrorTypes';
 import { HorrorLevels } from '../../constants/horrorTypes';
 import { HorrorTypes } from '../../constants/horrorTypes';
 import { RoomTier } from '../../constants/roomPreferences';
-
 import { RoomQuantityPreference } from '../../constants/roomPreferences';
 
-export const applyPreferences = (answers) => {
-  const filteredRooms = rooms.filter(applyPreferenceFilters(answers));
+export const applyPreferences = (answers, excludedRoomIds = []) => {
+  const availableRooms = rooms.filter(room => !excludedRoomIds.includes(room.id));
+  const filteredRooms = availableRooms.filter(applyPreferenceFilters(answers));
   console.log('Filtered rooms: ', filteredRooms);
   filteredRooms.sort(preferenceSortOperator(answers));
   console.log('Sorted rooms: ', filteredRooms);
