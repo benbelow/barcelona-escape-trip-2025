@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import Questionnaire from './components/Questionnaire/Questionnaire'
 import RoomSuggestions from './components/RoomSuggestions/RoomSuggestions'
@@ -8,7 +8,7 @@ import { QuestionnaireProvider } from './context/QuestionnaireContext'
 function App() {
   return (
     <QuestionnaireProvider>
-      <Router basename="/barcelona-escape-trip-2025">
+      <Router basename="">
         <div className="app">
           <header>
             <h1>Escape Room Finder</h1>
