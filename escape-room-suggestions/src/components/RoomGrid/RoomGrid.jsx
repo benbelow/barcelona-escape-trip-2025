@@ -36,7 +36,6 @@ export default function RoomGrid({ rooms }) {
           <div className="room-content">
             <h3>{room.name}</h3>
             <div className="room-details">
-              <p><strong>Tier:</strong> {room.expectedTier}</p>
               {room.theme && <p><strong>Theme:</strong> {room.theme}</p>}
               {room.description && <p className="room-description">{room.description}</p>}
             </div>

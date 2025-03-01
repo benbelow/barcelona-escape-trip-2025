@@ -31,19 +31,29 @@ export const questions = [
   {
     index: 3,
     id: QuestionId.HORROR_PREFERENCES,
-    question: "What types of horror are you interested in?",
+    question: "What types of horror are you happy with?",
     type: "multiple",
     optional: true,
     skipIf: (answers) => answers[QuestionId.HORROR_APPETITE] === HorrorPreference.NONE,
     options: Object.entries(HorrorTypes).map(([_, value]) => ({
       id: value,
       label: HorrorTypeLabels[value]
-    }))
+    })),
+    defaultValue: Object.values(HorrorTypes)
   }
 ];
 
 export function QuestionnaireProvider({ children }) {
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState(() => {
+    // Set initial state with default values for questions that have them
+    const initialAnswers = {};
+    questions.forEach(question => {
+      if (question.defaultValue !== undefined) {
+        initialAnswers[question.id] = question.defaultValue;
+      }
+    });
+    return initialAnswers;
+  });
 
   const updateAnswer = (questionId, answer) => {
     setAnswers(prev => {
