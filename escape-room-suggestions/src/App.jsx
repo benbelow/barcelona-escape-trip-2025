@@ -1,30 +1,34 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-import Questionnaire from './components/Questionnaire'
-import RoomSuggestions from './components/RoomSuggestions'
+import Questionnaire from './components/Questionnaire/Questionnaire'
+import RoomSuggestions from './components/RoomSuggestions/RoomSuggestions'
+import AllRooms from './components/AllRooms/AllRooms'
+import { QuestionnaireProvider } from './context/QuestionnaireContext'
 
 function App() {
-  const [answers, setAnswers] = useState(null);
-
-  const handleQuestionnaireComplete = (questionnaireAnswers) => {
-    setAnswers(questionnaireAnswers);
-  };
-
   return (
-    <div className="app">
-      <header>
-        <h1>Escape Room Finder</h1>
-        <p>Find your perfect escape room adventure!</p>
-      </header>
-      
-      <main>
-        {!answers ? (
-          <Questionnaire onComplete={handleQuestionnaireComplete} />
-        ) : (
-          <RoomSuggestions answers={answers} />
-        )}
-      </main>
-    </div>
+    <QuestionnaireProvider>
+      <Router>
+        <div className="app">
+          <header>
+            <h1>Escape Room Finder</h1>
+            <nav>
+              <Link to="/" className="nav-link">Home</Link>
+              <Link to="/rooms" className="nav-link">All Rooms</Link>
+            </nav>
+          </header>
+          
+          <main>
+            <Routes>
+              <Route path="/rooms" element={<AllRooms />} />
+              <Route path="/results" element={<RoomSuggestions />} />
+              <Route path="/question/:questionId" element={<Questionnaire />} />
+              <Route path="/" element={<Questionnaire />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </QuestionnaireProvider>
   )
 }
 

@@ -1,0 +1,9 @@
+.all-rooms {
+  padding: 2rem;
+}
+
+.all-rooms h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--primary-color);
+}

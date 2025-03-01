@@ -6,7 +6,7 @@ export const rooms = [
     description: "",
     horrorLevel: 0,
     expectedTier: 1,
-    imageUrl: "https://images.unsplash.com/photo-1590332679202-23ff7c0ca8dd?w=800&auto=format&fit=crop"
+    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ export const rooms = [
     description: "",
     horrorLevel: 3,
     expectedTier: 1,
-    imageUrl: "https://images.unsplash.com/photo-1626397558062-eafee0bd7734?w=800&auto=format&fit=crop"
+    imageUrl: "https://images.unsplash.com/photo-1596633607590-7156877ef734?w=800&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -60,6 +60,6 @@ export const rooms = [
     description: "",
     horrorLevel: 0,
     expectedTier: 2,
-    imageUrl: "https://images.unsplash.com/photo-1570482606740-a0b0c7ef6fd7?w=800&auto=format&fit=crop"
+    imageUrl: "https://images.unsplash.com/photo-1619454016518-697bc231e7cb?w=800&auto=format&fit=crop"
   }
 ];
