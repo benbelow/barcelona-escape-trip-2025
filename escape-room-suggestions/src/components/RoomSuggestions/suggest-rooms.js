@@ -48,36 +48,54 @@ const filterByHorrorPreference = (answers, room) => {
 // Sort rooms by preference
 const preferenceSortOperator = (answers) => {
   const roomProperties = answers[QuestionId.ROOM_PROPERTIES] || [];
+  const tierOrder = {
+    [RoomTier.TOP_TIER]: 5,
+    [RoomTier.BRILLIANT]: 4,
+    [RoomTier.VERY_GOOD]: 3,
+    [RoomTier.GOOD]: 2,
+    [RoomTier.AVERAGE]: 1
+  };
+  
+  const horrorRank = {
+    [HorrorLevels.VERY_SCARY]: 3,
+    [HorrorLevels.SCARY]: 2,
+    [HorrorLevels.NOT_HORROR]: 1
+  };
 
   // return -ve if a is better, return +ve if b is better
   return (roomA, roomB) => {
-    // Sort by matching room properties first
-    const aHasMatchingProperty = roomProperties.some(property => roomA.room_properties?.includes(property));
-    const bHasMatchingProperty = roomProperties.some(property => roomB.room_properties?.includes(property));
+    // First check if rooms have any matching properties
+    const aMatchCount = roomA.room_properties?.filter(property => roomProperties.includes(property)).length || 0;
+    const bMatchCount = roomB.room_properties?.filter(property => roomProperties.includes(property)).length || 0;
 
-    if (aHasMatchingProperty !== bHasMatchingProperty) {
-      return aHasMatchingProperty ? -1 : 1;
+    const aHasMatch = aMatchCount > 0;
+    const bHasMatch = bMatchCount > 0;
+
+    // If one has matches and other doesn't, prioritize the one with matches
+    if (aHasMatch !== bHasMatch) {
+      return aHasMatch ? -1 : 1;
     }
 
-    // Then sort by tier
-    const tierOrder = {
-      [RoomTier.TOP_TIER]: 5,
-      [RoomTier.BRILLIANT]: 4,
-      [RoomTier.VERY_GOOD]: 3,
-      [RoomTier.GOOD]: 2,
-      [RoomTier.AVERAGE]: 1
-    };
+    // For rooms with matches, sort by tier first
+    if (aHasMatch && bHasMatch) {
 
+      if (roomA.expectedTier !== roomB.expectedTier) {
+        return tierOrder[roomB.expectedTier] - tierOrder[roomA.expectedTier];
+      }
+
+      // Within same tier, sort by number of matches
+
+      if (aMatchCount !== bMatchCount) {
+        return bMatchCount - aMatchCount;
+      }
+    }
+
+    // Sort by tier
     if (roomA.expectedTier !== roomB.expectedTier) {
       return tierOrder[roomB.expectedTier] - tierOrder[roomA.expectedTier];
     }
 
     // Then sort by horror level 
-    const horrorRank = {
-      [HorrorLevels.VERY_SCARY]: 3,
-      [HorrorLevels.SCARY]: 2,
-      [HorrorLevels.NOT_HORROR]: 1
-    };
 
     if (answers[QuestionId.HORROR_APPETITE] === HorrorPreference.SEEKING && roomA.horrorLevel !== roomB.horrorLevel) {
       return horrorRank[roomB.horrorLevel] - horrorRank[roomA.horrorLevel];
