@@ -538,7 +538,7 @@ export const rooms = [
     horrorTypes: [HorrorTypes.DARK_THEMES, HorrorTypes.JUMP_SCARES],
     room_properties: [RoomProperties.NOVEL, RoomProperties.SPECTACLE, RoomProperties.IMMERSIVE, RoomProperties.ACTORS],
     expectedTier: RoomTier.GOOD,
-    imageUrl: "https://cindyescapebox.com/wp-content/uploads/2019/09/LOGO-FINAL-BLASPHEMIA.jpg",
+    imageUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/7b/3d/76/blasphemia-escape-room.jpg?w=900&h=500&s=1",
     location: "Barcelona",
     terpeca2024: null,
     minutesByCar: 55,
