@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { HorrorTypes, HorrorTypeLabels, HorrorPreference } from '../constants/horrorTypes';
 import { RoomQuantityPreference, RoomQuantityLabels } from '../constants/roomPreferences';
-import { RoomProperties, RoomPropertyLabels } from '../constants/roomProperties';
+import { RoomProperties, RoomPropertyLabels, TravelPreference, TravelPreferenceLabels } from '../constants/roomProperties';
 import { QuestionId } from '../constants/questionIds';
 
 const QuestionnaireContext = createContext(null);
@@ -54,6 +54,17 @@ export const questions = [
       label: RoomPropertyLabels[value]
     })),
     defaultValue: []
+  },
+  {
+    index: 5,
+    id: QuestionId.TRAVEL_PREFERENCE,
+    question: "How do you feel about travelling to rooms?",
+    type: "single",
+    skippable: true,
+    options: Object.entries(TravelPreference).map(([_, value]) => ({
+      id: value,
+      label: TravelPreferenceLabels[value]
+    }))
   }
 ];
 

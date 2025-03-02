@@ -123,7 +123,7 @@ export const rooms = [
     description: "Bring the movie to life, good room design",
     horrorLevel: HorrorLevels.NOT_HORROR,
     horrorTypes: [],
-    room_properties: [RoomProperties.SPECTACLE, RoomProperties.IMMERSIVE, RoomProperties.GREAT_SET, RoomProperties.ACTORS],
+    room_properties: [RoomProperties.SPECTACLE, RoomProperties.IMMERSIVE, RoomProperties.GREAT_SET, RoomProperties.ACTORS, RoomProperties.PHYSICAL],
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_Jurassic.jpg", location: "Barcelona",
     terpeca2024: 51,

@@ -5,6 +5,7 @@ import { HorrorLevels } from '../../constants/horrorTypes';
 import { HorrorTypes } from '../../constants/horrorTypes';
 import { RoomTier } from '../../constants/roomPreferences';
 import { RoomQuantityPreference } from '../../constants/roomPreferences';
+import { TravelPreference } from '../../constants/roomProperties';
 
 export const applyPreferences = (answers, excludedRoomIds = []) => {
   const availableRooms = rooms.filter(room => !excludedRoomIds.includes(room.id));
@@ -12,7 +13,10 @@ export const applyPreferences = (answers, excludedRoomIds = []) => {
   console.log('Filtered rooms: ', filteredRooms);
   filteredRooms.sort(preferenceSortOperator(answers));
   console.log('Sorted rooms: ', filteredRooms);
-  return filteredRooms.slice(0, getNumberOfRooms(answers));
+
+  const roomsFilteredByDistance = applyDistanceQuotas(answers, filteredRooms);
+
+  return roomsFilteredByDistance.slice(0, getNumberOfRooms(answers));
 }
 
 // Filtering out rooms that actively don't meet criteria
@@ -20,6 +24,8 @@ const applyPreferenceFilters = (answers) => {
   return (room) => {
     // Filter by horror preference
     if (!filterByHorrorPreference(answers, room)) return false;
+
+    // Don't filter by travel here - not independent function, but quote of top x matching only
 
     return true;
   }
@@ -55,7 +61,7 @@ const preferenceSortOperator = (answers) => {
     [RoomTier.GOOD]: 2,
     [RoomTier.AVERAGE]: 1
   };
-  
+
   const horrorRank = {
     [HorrorLevels.VERY_SCARY]: 3,
     [HorrorLevels.SCARY]: 2,
@@ -123,4 +129,33 @@ const getNumberOfRooms = (answers) => {
     case RoomQuantityPreference.MAXIMUM:
       return Infinity;
   }
+}
+
+const applyDistanceQuotas = (answers, rooms) => {
+  const farAwayRoomQuotas = {
+    [TravelPreference.LOCAL_ONLY]: 0,
+    [TravelPreference.SMALL_TRAVEL]: 2,
+    [TravelPreference.AVOID_CARS]: 5,
+    [TravelPreference.MULTIPLE_TRAVEL]: 5,
+    [TravelPreference.NO_PREFERENCE]: Infinity
+  }
+
+  const farAwayThreshold = 40;
+
+  const farAwayRoomQuota = farAwayRoomQuotas[answers[QuestionId.TRAVEL_PREFERENCE]];
+  let farAwayRoomCount = 0;
+
+  return rooms.reduce((acc, current) => {
+    const isRoomFar = current.minutesByPublicTransport > farAwayThreshold;
+    if (!isRoomFar) {
+      return [...acc, current];
+    }
+    else if (farAwayRoomCount >= farAwayRoomQuota) {
+      return acc;
+    } else {
+      farAwayRoomCount++;
+      return [...acc, current];
+    }
+  }, []);
+
 }
