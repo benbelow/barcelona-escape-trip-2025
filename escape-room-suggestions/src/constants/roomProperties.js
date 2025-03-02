@@ -25,7 +25,6 @@ export const RoomPropertyLabels = {
 export const TravelPreference = {
   LOCAL_ONLY: 'localOnly',
   SMALL_TRAVEL: 'smallTravel',
-  AVOID_CARS: 'avoidCars',
   MULTIPLE_TRAVEL: 'multipleTravel',
   NO_PREFERENCE: 'noPreference',
 };
@@ -33,7 +32,6 @@ export const TravelPreference = {
 export const TravelPreferenceLabels = {
   [TravelPreference.LOCAL_ONLY]: 'Keep it local',
   [TravelPreference.SMALL_TRAVEL]: 'A small amount of travel days',
-  [TravelPreference.AVOID_CARS]: 'Happy to travel, but prefer to avoid cars',
   [TravelPreference.MULTIPLE_TRAVEL]: 'Multiple travel days',
   [TravelPreference.NO_PREFERENCE]: "I don't care, just show me the best rooms",
 };

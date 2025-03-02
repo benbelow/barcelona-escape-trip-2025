@@ -204,7 +204,7 @@ export const rooms = [
     horrorTypes: [],
     room_properties: [RoomProperties.PUZZLE_FOCUSED],
     expectedTier: RoomTier.VERY_GOOD,
-    imageUrl: "https://example.com/cerveseria.jpg",
+    imageUrl: "https://media-cdn.tripadvisor.com/media/photo-s/19/83/fc/57/4-a-6-jugadores-80-minutos.jpg",
     location: "Barcelona",
     terpeca2024: 102,
     minutesByCar: 14,
