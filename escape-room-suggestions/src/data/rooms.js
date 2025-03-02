@@ -15,7 +15,9 @@ export const rooms = [
     expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://terpeca.com/images/rooms/Room_LaTaberna.jpg",
     location: "Terrassa",
-    terpeca2024: 5
+    terpeca2024: 5,
+    minutesByCar: 28,
+    minutesByPublicTransport: 89
   },
   {
     id: 2,
@@ -29,7 +31,9 @@ export const rooms = [
     expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://terpeca.com/images/rooms/Room_KONGProtocol.jpg",
     location: "Santa Coloma de Gramenet",
-    terpeca2024: 10
+    terpeca2024: 10,
+    minutesByCar: 22,
+    minutesByPublicTransport: 30
   },
   {
     id: 3,
@@ -43,7 +47,9 @@ export const rooms = [
     expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://terpeca.com/images/rooms/Room_CyberCity2049.png",
     location: "Santa Coloma de Gramenet",
-    terpeca2024: 29
+    terpeca2024: 29,
+    minutesByCar: 22,
+    minutesByPublicTransport: 30
   },
   {
     id: 4,
@@ -57,7 +63,9 @@ export const rooms = [
     expectedTier: RoomTier.TOP_TIER,
     imageUrl: "https://terpeca.com/images/rooms/Room_Outline.jpg",
     location: "Cornella de Llobregat",
-    terpeca2024: 35
+    terpeca2024: 35,
+    minutesByCar: 24,
+    minutesByPublicTransport: 39
   },
   {
     id: 5,
@@ -71,7 +79,9 @@ export const rooms = [
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_NightShift.jpg",
     location: "Sabadell",
-    terpeca2024: 40
+    terpeca2024: 40,
+    minutesByCar: 20,
+    minutesByPublicTransport: 30
   },
   {
     id: 6,
@@ -85,7 +95,9 @@ export const rooms = [
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_LaPosesion.jpg",
     location: "Sant Sadurni D'Anoia",
-    terpeca2024: 43
+    terpeca2024: 43,
+    minutesByCar: 50,
+    minutesByPublicTransport: 91
   },
   {
     id: 7,
@@ -99,7 +111,9 @@ export const rooms = [
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_Poison.jpg",
     location: "Barcelona",
-    terpeca2024: 47
+    terpeca2024: 47,
+    minutesByCar: 28,
+    minutesByPublicTransport: 49
   },
   {
     id: 8,
@@ -112,7 +126,9 @@ export const rooms = [
     room_properties: [RoomProperties.SPECTACLE, RoomProperties.IMMERSIVE, RoomProperties.GREAT_SET, RoomProperties.ACTORS],
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_Jurassic.jpg", location: "Barcelona",
-    terpeca2024: 51
+    terpeca2024: 51,
+    minutesByCar: 6,
+    minutesByPublicTransport: 2
   },
   {
     id: 9,
@@ -126,7 +142,9 @@ export const rooms = [
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_LaCasa.png",
     location: "Berga",
-    terpeca2024: 62
+    terpeca2024: 62,
+    minutesByCar: 75,
+    minutesByPublicTransport: 159
   },
   {
     id: 10,
@@ -140,7 +158,9 @@ export const rooms = [
     expectedTier: RoomTier.GOOD,
     imageUrl: "https://terpeca.com/images/rooms/Room_11s.jpg",
     location: "Cornella de Llobregat",
-    terpeca2024: 68
+    terpeca2024: 68,
+    minutesByCar: 9,
+    minutesByPublicTransport: 14
   },
   {
     id: 11,
@@ -154,7 +174,9 @@ export const rooms = [
     expectedTier: RoomTier.VERY_GOOD,
     imageUrl: "https://terpeca.com/images/rooms/Room_Distrito111.jpg",
     location: "Barcelona",
-    terpeca2024: 86
+    terpeca2024: 86,
+    minutesByCar: 20,
+    minutesByPublicTransport: 30
   },
   {
     id: 12,
@@ -168,7 +190,9 @@ export const rooms = [
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://terpeca.com/images/rooms/Room_TaoRoomEscape.png",
     location: "Calella de Mar",
-    terpeca2024: 94
+    terpeca2024: 94,
+    minutesByCar: 45,
+    minutesByPublicTransport: 85
   },
   {
     id: 13,
@@ -182,7 +206,9 @@ export const rooms = [
     expectedTier: RoomTier.VERY_GOOD,
     imageUrl: "https://example.com/cerveseria.jpg",
     location: "Barcelona",
-    terpeca2024: 102
+    terpeca2024: 102,
+    minutesByCar: 14,
+    minutesByPublicTransport: 25
   },
   {
     id: 14,
@@ -196,7 +222,9 @@ export const rooms = [
     expectedTier: RoomTier.VERY_GOOD,
     imageUrl: "https://example.com/fontcalda.jpg",
     location: "Barcelona",
-    terpeca2024: 106
+    terpeca2024: 106,
+    minutesByCar: 55,
+    minutesByPublicTransport: 121
   },
   {
     id: 15,
@@ -210,7 +238,9 @@ export const rooms = [
     expectedTier: RoomTier.VERY_GOOD,
     imageUrl: "https://example.com/malum.jpg",
     location: "Barcelona",
-    terpeca2024: 116
+    terpeca2024: 116,
+    minutesByCar: 24,
+    minutesByPublicTransport: 36
   },
   {
     id: 16,
@@ -238,7 +268,9 @@ export const rooms = [
     expectedTier: RoomTier.GOOD,
     imageUrl: "https://example.com/inmortum2.jpg",
     location: "Gironella",
-    terpeca2024: 141
+    terpeca2024: 141,
+    minutesByCar: 70,
+    minutesByPublicTransport: 124
   },
   {
     id: 18,
@@ -252,7 +284,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/gameon.jpg",
     location: "Manresa",
-    terpeca2024: 177
+    terpeca2024: 177,
+    minutesByCar: 55,
+    minutesByPublicTransport: 106
   },
   {
     id: 19,
@@ -266,7 +300,9 @@ export const rooms = [
     expectedTier: RoomTier.GOOD,
     imageUrl: "https://example.com/odisea.jpg",
     location: "Vilafranca",
-    terpeca2024: 195
+    terpeca2024: 195,
+    minutesByCar: 50,
+    minutesByPublicTransport: 88
   },
   {
     id: 20,
@@ -280,7 +316,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/whitechapel.jpg",
     location: "Barcelona",
-    terpeca2024: 198
+    terpeca2024: 198,
+    minutesByCar: 20,
+    minutesByPublicTransport: 31
   },
   {
     id: 21,
@@ -294,7 +332,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/nakatomi.jpg",
     location: "Barcelona",
-    terpeca2024: 239
+    terpeca2024: 239,
+    minutesByCar: 24,
+    minutesByPublicTransport: 30
   },
   {
     id: 22,
@@ -308,7 +348,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/bermuda.jpg",
     location: "Barcelona",
-    terpeca2024: 271
+    terpeca2024: 271,
+    minutesByCar: 22,
+    minutesByPublicTransport: 31
   },
   {
     id: 23,
@@ -322,7 +364,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/abduction3.jpg",
     location: "Badaluna",
-    terpeca2024: 274
+    terpeca2024: 274,
+    minutesByCar: 18,
+    minutesByPublicTransport: 58
   },
   {
     id: 24,
@@ -336,7 +380,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/tombhunter.jpg",
     location: "Santa Coloma de Gramenet",
-    terpeca2024: 284
+    terpeca2024: 284,
+    minutesByCar: 18,
+    minutesByPublicTransport: 33
   },
   {
     id: 25,
@@ -350,7 +396,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/kidnapped.jpg",
     location: "Barcelona",
-    terpeca2024: 292
+    terpeca2024: 292,
+    minutesByCar: 22,
+    minutesByPublicTransport: 28
   },
   {
     id: 26,
@@ -364,7 +412,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/forgottentomb.jpg",
     location: "Barcelona",
-    terpeca2024: 302
+    terpeca2024: 302,
+    minutesByCar: 30,
+    minutesByPublicTransport: 38
   },
   {
     id: 27,
@@ -378,7 +428,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/abduction4.jpg",
     location: "Badaluna",
-    terpeca2024: 306
+    terpeca2024: 306,
+    minutesByCar: 18,
+    minutesByPublicTransport: 58
   },
   {
     id: 28,
@@ -392,13 +444,15 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/alienorigin.jpg",
     location: "Barcelona",
-    terpeca2024: 350
+    terpeca2024: 350,
+    minutesByCar: 18,
+    minutesByPublicTransport: 33
   },
   {
     id: 29,
     name: "Catacombs",
     company: "Golden Pop",
-    theme: "Movie Adventure",
+    theme: "Indiana Jones",
     description: "Designed like being in a movie, some expensive set design. I loved the decoration. I loved the special effects. I loved the lighting. I loved the music and sound effects. I loved the riddles. And I loved both the beginning and the ending.",
     horrorLevel: HorrorLevels.NOT_HORROR,
     horrorTypes: [],
@@ -406,7 +460,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/catacombs.jpg",
     location: "Barcelona",
-    terpeca2024: 351
+    terpeca2024: 351,
+    minutesByCar: 6,
+    minutesByPublicTransport: 2
   },
   {
     id: 30,
@@ -420,7 +476,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/cookingacademy.jpg",
     location: "Barcelona",
-    terpeca2024: 358
+    terpeca2024: 358,
+    minutesByCar: 28,
+    minutesByPublicTransport: 89
   },
   {
     id: 31,
@@ -434,7 +492,9 @@ export const rooms = [
     expectedTier: RoomTier.BRILLIANT,
     imageUrl: "https://example.com/exodus.jpg",
     location: "Barcelona",
-    terpeca2024: null
+    terpeca2024: null,
+    minutesByCar: 18,
+    minutesByPublicTransport: 24
   },
   {
     id: 32,
@@ -448,7 +508,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_N8NXaoWYR0XNsiyTaOCc7qCCmaBP5AHkRA&s",
     location: "Calella de Mar",
-    terpeca2024: null
+    terpeca2024: null,
+    minutesByCar: 45,
+    minutesByPublicTransport: 85
   },
   {
     id: 33,
@@ -462,7 +524,9 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/hater.jpg",
     location: "Gironella",
-    terpeca2024: null
+    terpeca2024: null,
+    minutesByCar: 70,
+    minutesByPublicTransport: 124
   },
   {
     id: 34,
@@ -476,13 +540,15 @@ export const rooms = [
     expectedTier: RoomTier.GOOD,
     imageUrl: "https://example.com/blasphemia.jpg",
     location: "Barcelona",
-    terpeca2024: null
+    terpeca2024: null,
+    minutesByCar: 55,
+    minutesByPublicTransport: 128
   },
   {
     id: 35,
     name: "Keops Space Project",
     company: "Keops",
-    theme: "Egyptians In Space",
+    theme: "Ancient Egypt In Space",
     description: "Very little info. One person's favourite room. 3 hours long, quite video-gamey and different.",
     horrorLevel: HorrorLevels.NOT_HORROR,
     horrorTypes: [],
@@ -490,6 +556,8 @@ export const rooms = [
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://example.com/exodus.jpg",
     location: "Barcelona",
-    terpeca2024: null
+    terpeca2024: null,
+    minutesByCar: 120,
+    minutesByPublicTransport: 106
   }
 ];
