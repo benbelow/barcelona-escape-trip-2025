@@ -7,7 +7,9 @@ export const RoomProperties = {
   ACTORS: 'actors',
   PUZZLE_FOCUSED: 'puzzleFocused',
   TASK_FOCUSED: 'taskFocused',
-  PHYSICAL: 'physical'
+  PHYSICAL: 'physical',
+  VIDEO_GAME_STYLE: 'videoGameStyle',
+  COMPETITIVE: 'competitive'
 };
 
 export const RoomPropertyLabels = {
@@ -19,7 +21,9 @@ export const RoomPropertyLabels = {
   [RoomProperties.ACTORS]: 'Actors',
   [RoomProperties.PUZZLE_FOCUSED]: 'Puzzle-Focussed',
   [RoomProperties.TASK_FOCUSED]: 'Task-Focussed',
-  [RoomProperties.PHYSICAL]: 'Physical'
+  [RoomProperties.PHYSICAL]: 'Physical',
+  [RoomProperties.VIDEO_GAME_STYLE]: 'Video Game Style',
+  [RoomProperties.COMPETITIVE]: 'Competitive'
 };
 
 export const TravelPreference = {
