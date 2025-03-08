@@ -424,7 +424,7 @@ export const rooms = [
     description: "Batman, physical challenges",
     horrorLevel: HorrorLevels.NOT_HORROR,
     horrorTypes: [],
-    room_properties: [],
+    room_properties: [RoomProperties.PHYSICAL],
     expectedTier: RoomTier.AVERAGE,
     imageUrl: "https://res.cloudinary.com/mortyapp/image/upload/c_limit,w_964/f_auto/v1/store/s/6fea5e78-1f99-4476-8c67-4d19159cb2ee.jpeg",
     location: "Badaluna",
