@@ -529,22 +529,6 @@ export const rooms = [
     minutesByPublicTransport: 124
   },
   {
-    id: 34,
-    name: "Blasphemia",
-    company: "Cindy Box",
-    theme: "Religious Horror",
-    description: "Review: Highly ranked by Escape Roomers.de",
-    horrorLevel: HorrorLevels.VERY_SCARY,
-    horrorTypes: [HorrorTypes.DARK_THEMES, HorrorTypes.JUMP_SCARES],
-    room_properties: [RoomProperties.NOVEL, RoomProperties.SPECTACLE, RoomProperties.IMMERSIVE, RoomProperties.ACTORS],
-    expectedTier: RoomTier.GOOD,
-    imageUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/7b/3d/76/blasphemia-escape-room.jpg?w=900&h=500&s=1",
-    location: "Barcelona",
-    terpeca2024: null,
-    minutesByCar: 55,
-    minutesByPublicTransport: 128
-  },
-  {
     id: 35,
     name: "Keops Space Project",
     company: "Keops",
