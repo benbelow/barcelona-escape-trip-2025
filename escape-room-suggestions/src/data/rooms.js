@@ -543,5 +543,20 @@ export const rooms = [
     terpeca2024: null,
     minutesByCar: 120,
     minutesByPublicTransport: 106
+  },
+  {
+    id: 36,
+    name: "NW6 Bunker",
+    company: "Enigmik",
+    theme: "Secret Bunker",
+    description: "Very good puzzle game, same location as the Brewery",
+    horrorLevel: HorrorLevels.NOT_HORROR,
+    horrorTypes: [],
+    room_properties: [RoomProperties.PUZZLE_FOCUSED],
+    expectedTier: RoomTier.AVERAGE,
+    imageUrl: "https://i0.wp.com/www.enigmik.com/wp-content/uploads/2024/07/DSC7160-2-scaled.jpg?w=1707&ssl=1",
+    location: "Barcelona",
+    minutesByCar: 14,
+    minutesByPublicTransport: 25
   }
 ];
