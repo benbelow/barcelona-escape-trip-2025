@@ -31,7 +31,6 @@ const propertyMapping = {
   novel: 'NOVEL',
   puzzley: 'PUZZLE_FOCUSED',
   tasky: 'TASK_FOCUSED',
-  videogamey: 'VIDEO_GAME_STYLE',
   competitive: 'COMPETITIVE'
 };
 
@@ -58,6 +57,11 @@ records.forEach(record => {
       newProperties.push(`RoomProperties.${propKey}`);
     }
   });
+
+  // Add VIDEO_GAME_STYLE if videogamey has any string value
+  if (record.videogamey && record.videogamey.trim()) {
+    newProperties.push('RoomProperties.VIDEO_GAME_STYLE');
+  }
 
   // Create the horror types array
   const horrorTypes = [];
